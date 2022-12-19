@@ -6,7 +6,7 @@ PHP version 8.0.25
 
 ## *MYSQL Comando query:
 
-CREATE database if not exists distribuidora char set utf8;
+CREATE database if not exists vehicle_maintenance char set utf8;
 
 
 ## *IDE Configuração Arquivo .ENV:
@@ -31,8 +31,6 @@ npm run dev
 
 
 ## *IDE terminal Comand:  
-
-php artisan migrate
 
 php artisan migrate:fresh --seed
 

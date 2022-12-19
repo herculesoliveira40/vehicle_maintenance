@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MarcaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/layouts/main');
 });
+
+
+//Rotas Marca
+Route::get('/marcas', [MarcaController::class, 'dashboard']);
+Route::get('/marcas/dashboard', [MarcaController::class, 'dashboard']);
+Route::get('/marcas/create', [MarcaController::class, 'create']);
+Route::post('/marcas', [MarcaController::class, 'store']);
+Route::get('/marcas/edit/{id}', [MarcaController::class, 'edit']);
+Route::put('/marcas/update/{id}', [MarcaController::class, 'update']);
+Route::delete('/marcas/{id}', [MarcaController::class, 'destroy']);
