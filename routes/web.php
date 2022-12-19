@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ModeloController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +28,12 @@ Route::post('/marcas', [MarcaController::class, 'store']);
 Route::get('/marcas/edit/{id}', [MarcaController::class, 'edit']);
 Route::put('/marcas/update/{id}', [MarcaController::class, 'update']);
 Route::delete('/marcas/{id}', [MarcaController::class, 'destroy']);
+
+//Rotas Modelo
+Route::get('/modelos', [ModeloController::class, 'dashboard']);
+Route::get('/modelos/dashboard', [ModeloController::class, 'dashboard']);
+Route::get('/modelos/create', [ModeloController::class, 'create']);
+Route::post('/modelos', [ModeloController::class, 'store']);
+Route::get('/modelos/edit/{id}', [ModeloController::class, 'edit']);
+Route::put('/modelos/update/{id}', [ModeloController::class, 'update']);
+Route::delete('/modelos/{id}', [ModeloController::class, 'destroy']);

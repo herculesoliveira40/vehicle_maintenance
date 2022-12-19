@@ -5,7 +5,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/marcas/dashboard"> <i class="bi bi-speedometer"></i> Marcas </a></li>
-        <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-pencil-square"></i> Editar Marcas: {{$marca->id}}</li>
+        <li class="breadcrumb-item active" aria-current="page"><i class="bi bi-pencil-square"></i> Editar Marca: {{$marca->id}}</li>
     </ol>
 </nav>
 <div id="event-create-container" class="col-md-6 offset-md-3">

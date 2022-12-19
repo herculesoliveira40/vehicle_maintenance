@@ -27,7 +27,7 @@
     <div class="container-fluid">
     <img src="/img/mcq.png" alt="" width="60" height="48">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"> <i class="bi bi-chevron-double-down"></i></span>
+        <span class="navbar-toggler-icon"> <i class="bi bi-sort-down"></i> </span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -43,7 +43,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/marcas/create">Marca</a></li>
-              <li><a class="dropdown-item" href="#">Modelo</a></li>
+              <li><a class="dropdown-item" href="/modelos/create">Modelo</a></li>
               <li><a class="dropdown-item" href="#">Versão</a></li>
               <li><a class="dropdown-item" href="#">Veiculo</a></li>
               <li><a class="dropdown-item" href="#">Manutencao</a></li>
@@ -51,9 +51,9 @@
             </ul>
           </li>
         </ul>
-        <span class="navbar-text">
+        <a class="navbar-text" aria-current="page">
           Login
-        </span>
+        </a>
       </div>
     </div>
   </nav>
