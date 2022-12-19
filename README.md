@@ -1,8 +1,11 @@
 
+## *Versões Utilizadas:  
 
-MYSQL version 8.0.29
-Laravel version 9.4.0
-PHP version 8.0.25
+MYSQL version 8.0.29;
+
+Laravel version 9.4.0;
+
+PHP version 8.0.25;
 
 ## *MYSQL Comando query:
 

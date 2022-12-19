@@ -40,6 +40,11 @@ class MarcaController extends Controller
     return redirect('/marcas/dashboard')->with('mensagem', 'Marca editada com Sucesso!', ['data' => $data]);
     }
 
+    public function destroy(Request $request, $id) {
+        $id = $request['index_id'];
+        Marca::findOrFail($id)->delete();
 
+    return redirect('/marcas/dashboard')->with('mensagem', 'Marca deletada com Sucesso!'); //Invocar mensagemmmmmmmmmmmmmm
+    }
     
 }
