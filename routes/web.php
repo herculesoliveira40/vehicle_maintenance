@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ModeloController;
+use App\Http\Controllers\VersaoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +39,12 @@ Route::post('/modelos', [ModeloController::class, 'store']);
 Route::get('/modelos/edit/{id}', [ModeloController::class, 'edit']);
 Route::put('/modelos/update/{id}', [ModeloController::class, 'update']);
 Route::delete('/modelos/{id}', [ModeloController::class, 'destroy']);
+
+//Rotas Modelo
+Route::get('/versoes', [VersaoController::class, 'dashboard']);
+Route::get('/versoes/dashboard', [VersaoController::class, 'dashboard']);
+Route::get('/versoes/create', [VersaoController::class, 'create']);
+Route::post('/versoes', [VersaoController::class, 'store']);
+Route::get('/versoes/edit/{id}', [VersaoController::class, 'edit']);
+Route::put('/versoes/update/{id}', [VersaoController::class, 'update']);
+Route::delete('/versoes/{id}', [VersaoController::class, 'destroy']);

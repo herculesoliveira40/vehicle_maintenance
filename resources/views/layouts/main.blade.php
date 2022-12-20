@@ -44,7 +44,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/marcas/create">Marca</a></li>
               <li><a class="dropdown-item" href="/modelos/create">Modelo</a></li>
-              <li><a class="dropdown-item" href="#">Versão</a></li>
+              <li><a class="dropdown-item" href="/versoes/create">Versão</a></li>
               <li><a class="dropdown-item" href="#">Veiculo</a></li>
               <li><a class="dropdown-item" href="#">Manutencao</a></li>
               <li><a class="dropdown-item" href="#">Usuario</a></li>

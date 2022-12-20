@@ -26,7 +26,7 @@ class ModeloController extends Controller
 
         $modelo->save();
 
-        return redirect('/modelos/dashboard')->with('mensagem', 'Modelo Cadastrado com Sucesso!'); //Invocar mensagemmmmmmmmmmmmmm
+        return redirect('/modelos/dashboard')->with('mensagem', 'Modelo Cadastrado com Sucesso!'); //Invocar mensagem section
     }
 
     public function edit($id)
@@ -42,7 +42,7 @@ class ModeloController extends Controller
         $data = $request->all();
 
         Modelo::findOrFail($request->id)->update($data);
-        return redirect('/modelos/dashboard')->with('mensagem', 'Modelo Editado com Sucesso!', ['data' => $data]);
+        return redirect('/modelos/dashboard')->with('mensagem', 'Modelo Editado com Sucesso!', ['data' => $data]); //Invocar mensagem section
     }
 
     public function destroy(Request $request, $id)
@@ -50,6 +50,6 @@ class ModeloController extends Controller
         $id = $request['index_id'];
         Modelo::findOrFail($id)->delete();
 
-        return redirect('/modelos/dashboard')->with('mensagem', 'Modelo deletada com Sucesso!'); //Invocar mensagemmmmmmmmmmmmmm
+        return redirect('/modelos/dashboard')->with('mensagem', 'Modelo Deletado com Sucesso!'); //Invocar mensagem section
     }
 }

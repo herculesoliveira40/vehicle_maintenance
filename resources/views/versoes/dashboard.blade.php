@@ -1,12 +1,12 @@
 @extends('layouts.main')
 
-@section('title', 'Dashboard Marcas')
+@section('title', 'Dashboard Versoes')
 
 @section('content')
 <div class="row">
     <div class="col-xs-6 col-sm-8 col-lg-10">
-        <h1>Marcas</h1>
-        <a href="/marcas/create" class="btn btn-success"><i class="bi bi-plus-square-dotted"></i> Cadastrar Marca</a>
+        <h1>Versoes</h1>
+        <a href="/versoes/create" class="btn btn-success"><i class="bi bi-plus-square-dotted"></i> Cadastrar Versao</a>
 
         <table class="table">
             <thead>
@@ -18,22 +18,22 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($marcas as $marca)
+                @foreach($versoes as $versao)
                 <tr>
-                    <td scropt="row">{{ $marca->id }}</td>
-                    <td>{{ $marca->nome_marca}}</td>
+                    <td scropt="row">{{ $versao->id }}</td>
+                    <td>{{ $versao->nome_versao}}</td>
 
                     <td>
-                        <a href="/marcas/edit/{{ $marca->id }}" class="btn btn-warning edit-btn">
+                        <a href="/versoes/edit/{{ $versao->id }}" class="btn btn-warning edit-btn">
                             <i class="bi bi-wrench-adjustable"></i> Editar
                         </a>
 
                         <!-- Button trigger modal -->
-                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $marca->id }}">
+                        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $versao->id }}">
                             <i class="bi bi-trash3-fill"></i>
                         </a>
                         <!-- Modal -->
-                        <form id="delete" action="/marcas/{{ $marca->id }}" method="POST">
+                        <form id="delete" action="/versoes/{{ $versao->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             @include('helpers.delete_modal')
