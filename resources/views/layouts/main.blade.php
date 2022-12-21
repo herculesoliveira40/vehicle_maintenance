@@ -46,7 +46,7 @@
               <li><a class="dropdown-item" href="/modelos/create">Modelo</a></li>
               <li><a class="dropdown-item" href="/versoes/create">Versão</a></li>
               <li><a class="dropdown-item" href="/veiculos/create">Veiculo</a></li>
-              <li><a class="dropdown-item" href="#">Manutencao</a></li>
+              <li><a class="dropdown-item" href="/manutencoes/create">Manutencao</a></li>
               <li><a class="dropdown-item" href="#">Usuario</a></li>
             </ul>
           </li>

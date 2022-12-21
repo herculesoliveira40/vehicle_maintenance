@@ -6,6 +6,7 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\VersaoController;
 use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\ManutencaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,12 @@ Route::post('/veiculos', [VeiculoController::class, 'store']);
 Route::get('/veiculos/edit/{id}', [VeiculoController::class, 'edit']);
 Route::put('/veiculos/update/{id}', [VeiculoController::class, 'update']);
 Route::delete('/veiculos/{id}', [VeiculoController::class, 'destroy']);
+
+//Rotas Veiculo
+Route::get('/manutencoes', [ManutencaoController::class, 'dashboard']);
+Route::get('/manutencoes/dashboard', [ManutencaoController::class, 'dashboard']);
+Route::get('/manutencoes/create', [ManutencaoController::class, 'create']);
+Route::post('/manutencoes', [ManutencaoController::class, 'store']);
+Route::get('/manutencoes/edit/{id}', [ManutencaoController::class, 'edit']);
+Route::put('/manutencoes/update/{id}', [ManutencaoController::class, 'update']);
+Route::delete('/manutencoes/{id}', [ManutencaoController::class, 'destroy']);
