@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('versaos', function (Blueprint $table) {
+        Schema::create('versoes', function (Blueprint $table) {
             $table->id();
             $table->string('nome_versao');
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('versaos');
+        Schema::dropIfExists('versoes');
     }
 };

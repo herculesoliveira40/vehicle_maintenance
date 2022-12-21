@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marca extends Model
+class Veiculo extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
-
-    public function veiculo() {
-        return $this->hasMany('App\Models\Veiculo');
-    }
 }

@@ -10,4 +10,10 @@ class Versao extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $table = "versoes";
+
+    public function veiculo() {
+        return $this->hasMany('App\Models\Veiculo');
+    }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\VersaoController;
+use App\Http\Controllers\VeiculoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,12 @@ Route::post('/versoes', [VersaoController::class, 'store']);
 Route::get('/versoes/edit/{id}', [VersaoController::class, 'edit']);
 Route::put('/versoes/update/{id}', [VersaoController::class, 'update']);
 Route::delete('/versoes/{id}', [VersaoController::class, 'destroy']);
+
+//Rotas Veiculo
+Route::get('/veiculos', [VeiculoController::class, 'dashboard']);
+Route::get('/veiculos/dashboard', [VeiculoController::class, 'dashboard']);
+Route::get('/veiculos/create', [VeiculoController::class, 'create']);
+Route::post('/veiculos', [VeiculoController::class, 'store']);
+Route::get('/veiculos/edit/{id}', [VeiculoController::class, 'edit']);
+Route::put('/veiculos/update/{id}', [VeiculoController::class, 'update']);
+Route::delete('/veiculos/{id}', [VeiculoController::class, 'destroy']);
