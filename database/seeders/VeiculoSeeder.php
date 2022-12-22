@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Veiculo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class VeiculoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Veiculo::factory(3)->create();
     }
 }

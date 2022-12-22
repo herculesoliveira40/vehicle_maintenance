@@ -17,7 +17,15 @@ class VeiculoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome_veiculo' => $this->faker->stateAbbr(),
+            'ano' => $this->faker->year(),
+            'cor' => $this->faker->safeColorName(),
+            'img' => $this->faker->url(),
+            'placa' => $this->faker->hexColor(),
+            'marca_id' => rand(1,3),
+            'modelo_id' => rand(1,3),
+            'versao_id' => rand(1,3),
+            'user_id' => rand(1,3),
         ];
     }
 }

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('marca_id')->references('id')->on('marcas');
             $table->foreignId('modelo_id')->references('id')->on('modelos');
             $table->foreignId('versao_id')->references('id')->on('versoes');
+            $table->foreignId('user_id')->references('id')->on('users');
             
             
   

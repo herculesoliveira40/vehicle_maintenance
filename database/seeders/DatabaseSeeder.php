@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ModeloSeeder::class,
             VersaoSeeder::class,
             UserSeeder::class,
+            VeiculoSeeder::class,
 
         ]);
 
