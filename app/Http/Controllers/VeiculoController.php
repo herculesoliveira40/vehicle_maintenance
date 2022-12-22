@@ -43,6 +43,9 @@ class VeiculoController extends Controller
         $veiculo->modelo_id = $request->modelo_id;
         $veiculo->versao_id = $request->versao_id;
 
+        $user = auth()->user();
+        $veiculo->user_id = $user->id;
+
         $veiculo->save();
 
         return redirect('/veiculos/dashboard')->with('mensagem', 'Veiculo Cadastrado com Sucesso!', compact('marcas', 'modelos','versoes')); //Invocar mensagem section
@@ -65,6 +68,13 @@ class VeiculoController extends Controller
 
         Veiculo::findOrFail($request->id)->update($data);
         return redirect('/veiculos/dashboard')->with('mensagem', 'Veiculo Editado com Sucesso!', ['data' => $data]); //Invocar mensagem section
+    }
+
+    public function show($id) {
+
+        $veiculo = Veiculo::findOrFail($id);
+       
+    return view('veiculos.show', ['veiculo' => $veiculo]);    
     }
 
     public function destroy(Request $request, $id)

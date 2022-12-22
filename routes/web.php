@@ -59,6 +59,7 @@ Route::get('/veiculos/dashboard', [VeiculoController::class, 'dashboard']);
 Route::get('/veiculos/create', [VeiculoController::class, 'create']);
 Route::post('/veiculos', [VeiculoController::class, 'store']);
 Route::get('/veiculos/edit/{id}', [VeiculoController::class, 'edit']);
+Route::get('/veiculos/{id}', [VeiculoController::class, 'show']);
 Route::put('/veiculos/update/{id}', [VeiculoController::class, 'update']);
 Route::delete('/veiculos/{id}', [VeiculoController::class, 'destroy']);
 

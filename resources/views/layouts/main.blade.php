@@ -47,7 +47,7 @@
               <li><a class="dropdown-item" href="/versoes/create">Versão</a></li>
               <li><a class="dropdown-item" href="/veiculos/create">Veiculo</a></li>
               <li><a class="dropdown-item" href="/manutencoes/create">Manutencao</a></li>
-              <li><a class="dropdown-item" href="#">Usuario</a></li>
+              <li><a class="dropdown-item" href="/users/create">Usuario</a></li>
             </ul>
           </li>
         </ul>
