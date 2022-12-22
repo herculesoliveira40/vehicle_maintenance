@@ -53,7 +53,7 @@
         </ul>
         <a class="navbar-text" aria-current="page">
           <!-- Login -->
-          @include('layouts.helpers.modal')
+          @include('helpers.modal')
         </a>
       </div>
     </div>
