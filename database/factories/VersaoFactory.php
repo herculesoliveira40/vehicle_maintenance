@@ -17,7 +17,7 @@ class VersaoFactory extends Factory
     public function definition()
     {
         return [
-            'nome_versao' => $this->faker->name(),
+            'nome_versao' => $this->faker->stateAbbr(),
         ];
     }
 }

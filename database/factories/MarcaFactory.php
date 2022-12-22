@@ -18,7 +18,7 @@ class MarcaFactory extends Factory
     public function definition()
     {
         return [
-            'nome_marca' => $this->faker->name(),
+            'nome_marca' => $this->faker->state(),
         ];
     }
 }

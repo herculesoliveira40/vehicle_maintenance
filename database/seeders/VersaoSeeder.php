@@ -15,6 +15,6 @@ class VersaoSeeder extends Seeder
      */
     public function run()
     {
-        Versao::factory(5)->create();
+        Versao::factory(3)->create();
     }
 }

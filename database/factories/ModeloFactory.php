@@ -17,7 +17,7 @@ class ModeloFactory extends Factory
     public function definition()
     {
         return [
-            'nome_modelo' => $this->faker->name(),
+            'nome_modelo' => $this->faker->firstNameMale(),
         ];
     }
 }
