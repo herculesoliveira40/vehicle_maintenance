@@ -25,7 +25,7 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid">
-    <img src="/img/mcq.png" alt="" width="60" height="48">
+      <img src="/img/mcq.png" alt="" width="60" height="48">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"> <i class="bi bi-sort-down"></i> </span>
       </button>
@@ -52,7 +52,8 @@
           </li>
         </ul>
         <a class="navbar-text" aria-current="page">
-          Login
+          <!-- Login -->
+          @include('layouts.helpers.modal')
         </a>
       </div>
     </div>
