@@ -10,4 +10,10 @@ class Veiculo extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $dates = ['ultima_manutencao'];
+
+    public function manutencao() {
+        return $this->hasMany('App\Models\Manutencao');
+    }
 }

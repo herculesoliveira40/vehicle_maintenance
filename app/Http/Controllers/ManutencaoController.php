@@ -6,11 +6,21 @@ use App\Models\Manutencao;
 use App\Models\Veiculo;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
+
 class ManutencaoController extends Controller
 {
     public function dashboard()
     {
-        $manutencoes = Manutencao::all();
+        $manutencoes = DB::table('manutencoes')
+        ->orderByRaw('proxima_manutencao ASC')
+        ->where([
+            ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
+            ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
+            ['manutencoes.status', '=', 0],
+        ])
+        ->get();
 
         return View('manutencoes.dashboard', compact('manutencoes'));
     }

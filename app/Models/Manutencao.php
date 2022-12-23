@@ -15,8 +15,6 @@ class Manutencao extends Model
 
     protected $dates = ['ultima_manutencao', 'proxima_manutencao'];
 
-    public function manutencao() {
-        return $this->hasMany('App\Models\Manutencao');
-    }
+    
 
 }

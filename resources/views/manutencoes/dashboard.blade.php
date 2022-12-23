@@ -12,7 +12,8 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome</th>
+                    <th scope="col">Veiculo</th>
+                    <th scope="col">Proxima Manutenção</th>
                     <th scope="col">Menu</th>
 
                 </tr>
@@ -21,7 +22,8 @@
                 @foreach($manutencoes as $manutencao)
                 <tr>
                     <td scropt="row">{{ $manutencao->id }}</td>
-                    <td>{{ $manutencao->id}}</td>
+                    <td>{{ $manutencao->veiculo_id}}</td>
+                    <td>{{ date('d/m/Y - H:i', strtotime($manutencao->proxima_manutencao)) }}</td>
 
                     <td>
                         <a href="/manutencoes/edit/{{ $manutencao->id }}" class="btn btn-warning edit-btn">
