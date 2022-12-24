@@ -52,7 +52,7 @@
             </div>
             <div class="modal-footer">
                 <a href="/login" class="btn btn-primary">Já tem conta?</a>
-                <a href="/users/create" class="btn btn-success">Cadastre-se</a>
+                <a href="/register" class="btn btn-success">Cadastre-se</a>
             </div>
         </div>
     </div>
