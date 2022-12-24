@@ -12,6 +12,7 @@
 </nav>
 <h1>Cadastrar Usuario</h1>
 <div id="event-create-container" class="col-md-6 offset-md-3">
+@include('helpers.alert_error')
 
   <form action="/users" method="POST" enctype="multipart/form-data">
     @csrf {{--DIRETIVA Token SALVAR DADOS NO BANCO--}}

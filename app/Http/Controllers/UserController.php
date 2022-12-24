@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -16,7 +17,7 @@ class UserController extends Controller
         return View('users.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
 
         $user = new User;
