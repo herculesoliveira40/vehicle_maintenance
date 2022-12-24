@@ -6,6 +6,7 @@ use App\Models\Veiculo;
 use App\Models\Marca;
 use App\Models\Modelo;
 use App\Models\Versao;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,18 @@ class VeiculoController extends Controller
 {
     public function dashboard()
     {
-        $veiculos = Veiculo::all();
+        if (auth()->user()->profile == 0) {
+            $veiculos = Veiculo::all();
+        } 
+        else {
+            $veiculos = DB::table('veiculos')
+                ->orderByRaw('id ASC')
+                ->where([
+                    ['veiculos.user_id', '>=', auth()->user()->id],
+
+                ])
+                ->get();
+        }
 
         return View('veiculos.dashboard', compact('veiculos'));
     }
@@ -24,7 +36,7 @@ class VeiculoController extends Controller
         $modelos = Modelo::all();
         $versoes = Versao::all();
 
-        return view('veiculos.create', compact('marcas', 'modelos','versoes'));
+        return view('veiculos.create', compact('marcas', 'modelos', 'versoes'));
     }
 
     public function store(Request $request)
@@ -48,7 +60,7 @@ class VeiculoController extends Controller
 
         $veiculo->save();
 
-        return redirect('/veiculos/dashboard')->with('mensagem', 'Veiculo Cadastrado com Sucesso!', compact('marcas', 'modelos','versoes')); //Invocar mensagem section
+        return redirect('/veiculos/dashboard')->with('mensagem', 'Veiculo Cadastrado com Sucesso!', compact('marcas', 'modelos', 'versoes')); //Invocar mensagem section
     }
 
     public function edit($id)
@@ -58,7 +70,7 @@ class VeiculoController extends Controller
         $modelos = Modelo::all();
         $versoes = Versao::all();
 
-        return view('veiculos.edit', ['veiculo' => $veiculo], compact('marcas', 'modelos','versoes'));
+        return view('veiculos.edit', ['veiculo' => $veiculo], compact('marcas', 'modelos', 'versoes'));
     }
 
     public function update(Request $request)
@@ -70,11 +82,12 @@ class VeiculoController extends Controller
         return redirect('/veiculos/dashboard')->with('mensagem', 'Veiculo Editado com Sucesso!', ['data' => $data]); //Invocar mensagem section
     }
 
-    public function show($id) {
+    public function show($id)
+    {
 
         $veiculo = Veiculo::findOrFail($id);
-       
-    return view('veiculos.show', ['veiculo' => $veiculo]);    
+
+        return view('veiculos.show', ['veiculo' => $veiculo]);
     }
 
     public function destroy(Request $request, $id)

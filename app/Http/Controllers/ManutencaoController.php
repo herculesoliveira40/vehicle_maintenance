@@ -13,6 +13,11 @@ class ManutencaoController extends Controller
 {
     public function dashboard()
     {
+        if (auth()->user()->profile == 0) {
+            $manutencoes = Manutencao::all();
+        } 
+
+        else{
         $manutencoes = DB::table('manutencoes')
         ->orderByRaw('proxima_manutencao ASC')
         ->where([
@@ -20,7 +25,7 @@ class ManutencaoController extends Controller
             ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
             ['manutencoes.status', '=', 0],
         ])
-        ->get();
+        ->get();}
 
         return View('manutencoes.dashboard', compact('manutencoes'));
     }

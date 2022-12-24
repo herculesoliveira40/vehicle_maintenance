@@ -50,6 +50,24 @@
               <li><a class="dropdown-item" href="/users/create">Usuario</a></li>
             </ul>
           </li>
+          @auth
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Paineis
+            </a>
+            <ul class="dropdown-menu">
+            @if (Auth::user()->profile == 0)     {{-- Mostrar Cadastrar se Profile = adminstrador --}}
+              <li><a class="dropdown-item" href="/marcas/">Marca</a></li>
+              <li><a class="dropdown-item" href="/modelos/">Modelo</a></li>
+              <li><a class="dropdown-item" href="/versoes/">Versão</a></li>
+              <li><a class="dropdown-item" href="/users/dashboard">Usuario</a></li>
+            @endif    
+              <li><a class="dropdown-item" href="/veiculos/">Veiculo</a></li>
+              <li><a class="dropdown-item" href="/manutencoes/">Manutencao</a></li>
+            </ul>
+          </li>
+          
+          @endauth
         </ul>
         <a class="navbar-text" aria-current="page">
           <!-- Login -->

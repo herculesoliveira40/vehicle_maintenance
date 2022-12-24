@@ -3,6 +3,7 @@
     <!-- Button trigger modal -->
     <button type="button" class="nav-link btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Sair <i class="bi bi-door-open-fill"></i>
+        {{auth()->user()->name }}
     </button>
 
     <!-- Modal -->
