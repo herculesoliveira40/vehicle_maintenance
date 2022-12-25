@@ -14,6 +14,8 @@ class ManutencaoController extends Controller
     public function home()
     {
         $veiculos = Veiculo::all();
+
+        if (auth()->user()->profile == 0) {
         $manutencoes = DB::table('manutencoes')
             ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
             ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
@@ -23,7 +25,19 @@ class ManutencaoController extends Controller
                 ['manutencoes.status', '!=', 2],
             ])->orderByRaw('proxima_manutencao ASC')
             ->get();
-
+            }
+            else {
+                $manutencoes = DB::table('manutencoes')
+            ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
+            ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
+            ->where([
+                ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
+                ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
+                ['manutencoes.status', '!=', 2],
+                ['veiculos.user_id', '=', auth()->user()->id],
+            ])->orderByRaw('proxima_manutencao ASC')
+            ->get();
+            }
         return View('manutencoes.home', compact('manutencoes', 'veiculos'));
     }
 
@@ -41,7 +55,7 @@ class ManutencaoController extends Controller
             $manutencoes = DB::table('manutencoes')
 
                 ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao')
+                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
                 ->where([
                     ['veiculos.user_id', '=', auth()->user()->id],
 
