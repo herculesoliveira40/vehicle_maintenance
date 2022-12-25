@@ -15,6 +15,8 @@ class ManutencaoController extends Controller
     {
         $veiculos = Veiculo::all();
         $manutencoes = DB::table('manutencoes')
+            ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
+            ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
             ->where([
                 ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
                 ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
@@ -30,7 +32,10 @@ class ManutencaoController extends Controller
         $veiculos = Veiculo::all();
 
         if (auth()->user()->profile == 0) {
-            $manutencoes = Manutencao::all();
+            $manutencoes = DB::table('manutencoes')
+                ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
+                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
+                ->orderByRaw('id ASC')->get();
         } else {
 
             $manutencoes = DB::table('manutencoes')

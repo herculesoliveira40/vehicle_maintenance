@@ -22,7 +22,7 @@
                 @foreach($manutencoes as $manutencao)
                 <tr>
                     <td scropt="row">{{ $manutencao->id }}</td>
-                    <td>{{ $manutencao->veiculo_id}}</td>
+                    <td>{{ $manutencao->nome_veiculo}}</td>
                     <td>{{ date('d/m/Y - H:i', strtotime($manutencao->proxima_manutencao)) }}</td>
 
                     <td>
