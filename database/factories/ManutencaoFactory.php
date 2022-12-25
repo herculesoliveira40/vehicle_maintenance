@@ -17,7 +17,10 @@ class ManutencaoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'veiculo_id' => rand(1,3), 
+            'ultima_manutencao' => now(),
+            'proxima_manutencao' => now()->addDays(5),
+            'status' => rand(0,1), 
         ];
     }
 }

@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             VersaoSeeder::class,
             UserSeeder::class,
             VeiculoSeeder::class,
+            ManutencaoSeeder::class,
 
         ]);
 

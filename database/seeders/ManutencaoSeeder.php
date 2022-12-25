@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Manutencao;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class ManutencaoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Manutencao::factory(5)->create();
     }
 }
