@@ -21,7 +21,7 @@ class VeiculoController extends Controller
             $veiculos = DB::table('veiculos')
                 ->orderByRaw('id ASC')
                 ->where([
-                    ['veiculos.user_id', '>=', auth()->user()->id],
+                    ['veiculos.user_id', '=', auth()->user()->id],
 
                 ])
                 ->get();
