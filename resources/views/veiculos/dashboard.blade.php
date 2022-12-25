@@ -21,9 +21,12 @@
                 @foreach($veiculos as $veiculo)
                 <tr>
                     <td scropt="row">{{ $veiculo->id }}</td>
-                    <td>{{ $veiculo->nome_veiculo}}</td>
+                    <td><a href="/veiculos/{{ $veiculo->id }}">{{ $veiculo->nome_veiculo}}</td>
 
                     <td>
+                        <a href="/veiculos/{{ $veiculo->id }}" class="btn btn-info edit-btn">
+                            <i class="bi bi-eye-fill"></i> 
+                        </a>
                         <a href="/veiculos/edit/{{ $veiculo->id }}" class="btn btn-warning edit-btn">
                             <i class="bi bi-wrench-adjustable"></i> Editar
                         </a>

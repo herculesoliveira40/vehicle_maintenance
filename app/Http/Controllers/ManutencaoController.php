@@ -16,28 +16,28 @@ class ManutencaoController extends Controller
         $veiculos = Veiculo::all();
 
         if (auth()->user()->profile == 0) {
-        $manutencoes = DB::table('manutencoes')
-            ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-            ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
-            ->where([
-                ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
-                ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
-                ['manutencoes.status', '!=', 2],
-            ])->orderByRaw('proxima_manutencao ASC')
-            ->get();
-            }
-            else {
-                $manutencoes = DB::table('manutencoes')
-            ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-            ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
-            ->where([
-                ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
-                ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
-                ['manutencoes.status', '!=', 2],
-                ['veiculos.user_id', '=', auth()->user()->id],
-            ])->orderByRaw('proxima_manutencao ASC')
-            ->get();
-            }
+            $manutencoes = DB::table('manutencoes')
+                ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
+                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
+                ->where([
+                    ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
+                    ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
+                    ['manutencoes.status', '!=', 2],
+                ])->orderByRaw('proxima_manutencao ASC')
+                ->get();
+        } 
+        else {
+            $manutencoes = DB::table('manutencoes')
+                ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
+                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
+                ->where([
+                    ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
+                    ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
+                    ['manutencoes.status', '!=', 2],
+                    ['veiculos.user_id', '=', auth()->user()->id],
+                ])->orderByRaw('proxima_manutencao ASC')
+                ->get();
+        }
         return View('manutencoes.home', compact('manutencoes', 'veiculos'));
     }
 
@@ -50,7 +50,8 @@ class ManutencaoController extends Controller
                 ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
                 ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
                 ->orderByRaw('id ASC')->get();
-        } else {
+        } 
+        else {
 
             $manutencoes = DB::table('manutencoes')
 
@@ -71,7 +72,8 @@ class ManutencaoController extends Controller
     {
         if (auth()->user()->profile == 0) {
             $veiculos = Veiculo::all();
-        } else {
+        } 
+        else {
 
             $veiculos = DB::table('veiculos')
                 ->select('*')
@@ -80,6 +82,14 @@ class ManutencaoController extends Controller
 
                 ])
                 ->get();
+
+
+            if (count($veiculos) <= 0) {
+                return redirect('/veiculos/create')->with('alerta', 'Você não tem veiculos, cadastre!');
+            } 
+            else {
+                // dd('else');
+            }
         }
         return view('manutencoes.create', compact('veiculos'));
     }
@@ -113,7 +123,8 @@ class ManutencaoController extends Controller
         if (auth()->user()->id == $manutencoes[$id - 1]->user_id or auth()->user()->profile == 0) {
 
             return view('manutencoes.edit', ['manutencao' => $manutencao], compact('veiculos', 'manutencoes'));
-        } else {
+        } 
+        else {
             return redirect()->back()->with('alerta', 'Ops você não tem permissão para editar outro:(');
         }
     }

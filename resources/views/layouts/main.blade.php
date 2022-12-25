@@ -32,10 +32,10 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="/manutencoes/home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="/">Features</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,9 +63,10 @@
               <li><a class="dropdown-item" href="/users/dashboard">Usuario</a></li>
             @endif  
 
-              <li><a class="dropdown-item" href="/manutencoes/home">Home Manutencao Previstas</a></li>
               <li><a class="dropdown-item" href="/veiculos/">Veiculo</a></li>
               <li><a class="dropdown-item" href="/manutencoes/">Manutencao</a></li>
+              <li><a class="dropdown-item" href="/manutencoes/home">Home Manutencao Previstas</a></li>
+
             </ul>
           </li>
           

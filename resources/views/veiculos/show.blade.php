@@ -11,7 +11,7 @@
             <p>Marca: {{$veiculo->marca_id}}</p>
             <p>Modelo: {{$veiculo->modelo_id}}</p>
             <p>Versao: {{$veiculo->versao_id}}</p>
-            <p>Ultima Manutenção: </p>
+            
             <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
