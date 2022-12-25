@@ -70,7 +70,12 @@ class VeiculoController extends Controller
         $modelos = Modelo::all();
         $versoes = Versao::all();
 
-        return view('veiculos.edit', ['veiculo' => $veiculo], compact('marcas', 'modelos', 'versoes'));
+        if (auth()->user()->id == $veiculo->user_id OR auth()->user()->profile == 0) {
+            return view('veiculos.edit', ['veiculo' => $veiculo], compact('marcas', 'modelos', 'versoes'));
+        } 
+        else {
+            return redirect()->back()->with('alerta', 'Ops você não tem permissão para editar outro:(');
+        }
     }
 
     public function update(Request $request)

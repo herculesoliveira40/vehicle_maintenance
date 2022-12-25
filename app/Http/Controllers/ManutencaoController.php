@@ -43,9 +43,21 @@ class ManutencaoController extends Controller
     }
 
     public function create()
-    {
-        $veiculos = Veiculo::all();
+    {  
+        if (auth()->user()->profile == 0) {
+            $veiculos = Veiculo::all();
+        } 
+        else {
+            
+            $veiculos = DB::table('veiculos')
+            ->select('*')
+            ->where([
+                ['veiculos.user_id', '=', auth()->user()->id],
 
+            ])
+            ->get();
+
+        }
         return view('manutencoes.create', compact('veiculos'));
     }
 
