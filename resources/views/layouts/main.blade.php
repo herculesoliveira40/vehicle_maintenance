@@ -61,7 +61,9 @@
               <li><a class="dropdown-item" href="/modelos/">Modelo</a></li>
               <li><a class="dropdown-item" href="/versoes/">Versão</a></li>
               <li><a class="dropdown-item" href="/users/dashboard">Usuario</a></li>
-            @endif    
+            @endif  
+
+              <li><a class="dropdown-item" href="/manutencoes/home">Home Manutencao Previstas</a></li>
               <li><a class="dropdown-item" href="/veiculos/">Veiculo</a></li>
               <li><a class="dropdown-item" href="/manutencoes/">Manutencao</a></li>
             </ul>

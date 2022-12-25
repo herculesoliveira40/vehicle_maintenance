@@ -82,7 +82,7 @@ class UserController extends Controller
         if (FacadesAuth::attempt(['email' => $data['email'], 'password' => $data['password']], $remmenber)) {
             $us = auth()->user();
             //dd($us['name']);
-            return redirect('users/dashboard')->with('mensagem', 'Olá: ' . $us['name'] . ' Perfil: ' . $us['profile']);
+            return redirect('/manutencoes/home')->with('mensagem', 'Olá: ' . $us['name'] . ' Perfil: ' . $us['profile']);
         } else {
             return redirect('/login')->with('alerta', 'E-mail ou Senha incorreta');
         }

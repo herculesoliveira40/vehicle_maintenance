@@ -86,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
 
     //Rotas Manutencao
     Route::get('/manutencoes', [ManutencaoController::class, 'dashboard']);
+    Route::get('/manutencoes/home', [ManutencaoController::class, 'home']);
     Route::get('/manutencoes/dashboard', [ManutencaoController::class, 'dashboard']);
     Route::get('/manutencoes/create', [ManutencaoController::class, 'create']);
     Route::post('/manutencoes', [ManutencaoController::class, 'store']);
