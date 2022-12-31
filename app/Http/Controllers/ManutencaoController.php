@@ -125,7 +125,7 @@ class ManutencaoController extends Controller
             return view('manutencoes.edit', ['manutencao' => $manutencao], compact('veiculos', 'manutencoes'));
         } 
         else {
-            return redirect()->back()->with('alerta', 'Ops você não tem permissão para editar outro:(');
+            return redirect()->back()->with('alerta', 'Ops você não tem permissão para editar outro:c');
         }
     }
 
