@@ -117,9 +117,9 @@ class ManutencaoController extends Controller
         $veiculos = Veiculo::all();
         $manutencoes = DB::table('manutencoes')
             ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-            ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id',)->get();
+            ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id',)->orderByRaw('id ASC')->get(); // orderBy id abençoado
 
-        //  dd($manutencoes[$id-1]->user_id);
+        //  dd($manutencoes[$manutencao->id -1]);
         if (auth()->user()->id == $manutencoes[$id - 1]->user_id or auth()->user()->profile == 0) {
 
             return view('manutencoes.edit', ['manutencao' => $manutencao], compact('veiculos', 'manutencoes'));
