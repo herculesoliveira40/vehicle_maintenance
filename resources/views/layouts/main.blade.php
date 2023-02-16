@@ -96,7 +96,8 @@
   </div>
 </main>
 <footer >
-  <p class="text-center bg-light text-info"> 2022 <a href="https://github.com/herculesoliveira40" target="_blank"> Shelby &copy;</a> </strong> </p>
+  <p class="text-center bg-light text-info"> 2023 <a href="https://github.com/herculesoliveira40" target="_blank"> Sh &copy; <i class="bi bi-github"></i> </a> </strong> </p>
+
 </footer>
 </body>
 <script type="text/javascript" src="/js/script_modal.js"></script>

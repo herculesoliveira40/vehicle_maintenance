@@ -5,31 +5,61 @@ namespace App\Http\Controllers;
 use App\Models\Manutencao;
 use App\Models\Veiculo;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 use Illuminate\Support\Facades\DB;
 
 
 class ManutencaoController extends Controller
 {
+
+    protected $veiculo;
+    protected $manutencao;
+
+    protected $model;
+    public function __construct(Manutencao $manutencao)
+    {
+        $this->model = $manutencao; //User::
+    }
+
+
     public function home()
     {
         $veiculos = Veiculo::all();
 
+
+
         if (auth()->user()->profile == 0) {
             $manutencoes = DB::table('manutencoes')
                 ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
+                ->select(
+                    'manutencoes.id',
+                    'veiculos.user_id',
+                    'manutencoes.veiculo_id',
+                    'veiculos.placa',
+                    'manutencoes.proxima_manutencao',
+                    'veiculos.nome_veiculo',
+                    'manutencoes.status'
+                )
                 ->where([
                     ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
                     ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
                     ['manutencoes.status', '!=', 2],
                 ])->orderByRaw('proxima_manutencao ASC')
                 ->get();
-        } 
-        else {
+        } else {
             $manutencoes = DB::table('manutencoes')
                 ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
+                ->select(
+                    'manutencoes.id',
+                    'veiculos.user_id',
+                    'manutencoes.veiculo_id',
+                    'veiculos.placa',
+                    'manutencoes.proxima_manutencao',
+                    'veiculos.nome_veiculo',
+                    'manutencoes.status'
+                )
                 ->where([
                     ['manutencoes.proxima_manutencao', '>=', now()->subDays(1)],
                     ['manutencoes.proxima_manutencao', '<', now()->addDays(7)],
@@ -41,39 +71,86 @@ class ManutencaoController extends Controller
         return View('manutencoes.home', compact('manutencoes', 'veiculos'));
     }
 
-    public function dashboard()
+    
+    public function dashboard(Request $request)
     {
         $veiculos = Veiculo::all();
+
+
 
         if (auth()->user()->profile == 0) {
             $manutencoes = DB::table('manutencoes')
                 ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
-                ->orderByRaw('id ASC')->get();
-        } 
-        else {
+                ->select(
+                    'manutencoes.id',
+                    'veiculos.user_id',
+                    'veiculos.placa',
+                    'manutencoes.veiculo_id',
+                    'manutencoes.proxima_manutencao',
+                    'veiculos.nome_veiculo',
+                    'manutencoes.status'
+                )
+                ->orderByRaw('id ASC')
+                //->get();
+                ->paginate(5);
+        } else {
 
             $manutencoes = DB::table('manutencoes')
 
                 ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
-                ->select('manutencoes.id', 'veiculos.user_id', 'manutencoes.veiculo_id', 'manutencoes.proxima_manutencao', 'veiculos.nome_veiculo')
+                ->select(
+                    'manutencoes.id',
+                    'veiculos.user_id',
+                    'veiculos.placa',
+                    'manutencoes.veiculo_id',
+                    'manutencoes.proxima_manutencao',
+                    'veiculos.nome_veiculo',
+                    'manutencoes.status'
+                )
                 ->where([
                     ['veiculos.user_id', '=', auth()->user()->id],
 
                 ])->orderByRaw('id ASC')
-                ->get();
+                ->paginate(5);
+                
             //  dd($manutencoes);
         }
+        $search = $request->search;
+        $manutencoes_search = $this->model
+            ->getMaintenance(search: $request->search ?? '');
 
-        return View('manutencoes.dashboard', compact('manutencoes', 'veiculos'));
+
+        // Status Pie Chart
+        $results = DB::select(DB::raw("select count(manutencoes.status) as quanty_status, 
+        manutencoes.status
+            FROM manutencoes 
+                GROUP BY manutencoes.status"));
+
+        $data = "";
+
+        foreach ($results as $val) {
+            if ($val->status == 0){
+                $val->status = "Pendente";
+            }
+            elseif ($val->status == 1){
+                $val->status = "Andamento";
+            }
+            else{
+                $val->status = "Concluido";
+            }
+
+            $data.= "['".$val->status."',  " . $val->quanty_status . "],";
+        }
+        // dd($results);
+        $charData = $data;
+        return View('manutencoes.dashboard', compact('charData', 'manutencoes', 'veiculos', 'manutencoes_search'));
     }
 
     public function create()
     {
         if (auth()->user()->profile == 0) {
             $veiculos = Veiculo::all();
-        } 
-        else {
+        } else {
 
             $veiculos = DB::table('veiculos')
                 ->select('*')
@@ -86,13 +163,13 @@ class ManutencaoController extends Controller
 
             if (count($veiculos) <= 0) {
                 return redirect('/veiculos/create')->with('alerta', 'Você não tem veiculos, cadastre!');
-            } 
-            else {
+            } else {
                 // dd('else');
             }
         }
         return view('manutencoes.create', compact('veiculos'));
     }
+
 
     public function store(Request $request)
     {
@@ -123,8 +200,7 @@ class ManutencaoController extends Controller
         if (auth()->user()->id == $manutencoes[$id - 1]->user_id or auth()->user()->profile == 0) {
 
             return view('manutencoes.edit', ['manutencao' => $manutencao], compact('veiculos', 'manutencoes'));
-        } 
-        else {
+        } else {
             return redirect()->back()->with('alerta', 'Ops você não tem permissão para editar outro:c');
         }
     }
@@ -144,5 +220,33 @@ class ManutencaoController extends Controller
         Manutencao::findOrFail($id)->delete();
 
         return redirect('/manutencoes/dashboard')->with('mensagem', 'Manutencao deletada com Sucesso!'); //Invocar mensagem section
+    }
+
+
+
+
+
+    public function gerarPdf(){
+            $veiculos = Veiculo::all();
+
+            $manutencoes = DB::table('manutencoes')
+                ->join('veiculos', 'manutencoes.veiculo_id', '=', 'veiculos.id')
+                ->select(
+                    'manutencoes.id',
+                    'veiculos.user_id',
+                    'veiculos.placa',
+                    'manutencoes.veiculo_id',
+                    'manutencoes.proxima_manutencao',
+                    'veiculos.nome_veiculo',
+                    'manutencoes.status'
+                )
+                ->get();
+
+        //dd($estoques);
+
+        $pdf = PDF::loadView('manutencoes.relatorio', compact('manutencoes', 'veiculos'));
+
+        return $pdf->setPaper('a4')->stream('Relatorio_geral_manutencoes.pdf');
+
     }
 }

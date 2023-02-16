@@ -15,6 +15,22 @@ class Manutencao extends Model
 
     protected $dates = ['ultima_manutencao', 'proxima_manutencao'];
 
-    
+  public function veiculoManutencao() {
+        return $this->belongsTo(Veiculo::class);
+    }  
 
+    public function getMaintenance(string | null $search = '' ) {
+        $manutencoes_search = $this->where(function ($query) use ($search) {
+            if($search) {
+                $query->where('id', 'LIKE', "%{$search}%");
+               // $query->orwhere('email', $search);
+            }
+        })
+        ->with('veiculoManutencao')
+        ->paginate(5);
+
+        return $manutencoes_search;
+    }
+
+    
 }

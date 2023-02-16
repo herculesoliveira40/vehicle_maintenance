@@ -1,11 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'Painel Usuario')
+@section('title', 'Dashboard Usuario')
 
 @section('content')
 <div class="row">
 <div class="col-xs-6 col-sm-8 col-lg-10"> 
-    <table class="table">
+  <h1>Usuarios</h1>
+<div class="table-responsive">  
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -63,6 +65,7 @@
         </tbody>
     </table>
 
+</div>
 </div>
 </div>
 

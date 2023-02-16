@@ -11,7 +11,6 @@ PHP version 8.0.25;
 
 CREATE database if not exists vehicle_maintenance char set utf8;
 
-
 ## *IDE Configuração Arquivo .ENV:
 
 Editar as variaveis do arquivo /.env de acordo com a sua configuração do seu banco de dados
@@ -22,22 +21,20 @@ DB_PASSWORD=1234
 
 ## *IDE Composer install i terminal Comand:  
 
+```sh
 composer install
-
-
-## IDE Node install i terminal Comando:  
-
-
-npm install
-
-npm run dev
+```
 
 
 ## *IDE terminal Comand:  
 
+```sh
 php artisan migrate:fresh --seed
+```
 
+```sh
 php artisan serve
+```
 
 
 ## * Utilizar login admin do UserSeeder já criado, para ter acesso total: 

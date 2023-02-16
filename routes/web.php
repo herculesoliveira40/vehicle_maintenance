@@ -70,6 +70,9 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/users/update/{id}', [UserController::class, 'update']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
     Route::get('/ual', fn () => User::all()); // Arrow function return all
+
+    Route::get('/manutencoes/relatorio', [ManutencaoController::class, 'gerarPdf'])->name('manutencoes.gerarPDF');
+
 });
 
 
@@ -85,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/veiculos/{id}', [VeiculoController::class, 'destroy']);
 
     //Rotas Manutencao
-    Route::get('/manutencoes', [ManutencaoController::class, 'dashboard']);
+    Route::get('/manutencoes', [ManutencaoController::class, 'dashboard'])->name('manutencoes.dashboard');
     Route::get('/manutencoes/home', [ManutencaoController::class, 'home']);
     Route::get('/manutencoes/dashboard', [ManutencaoController::class, 'dashboard']);
     Route::get('/manutencoes/create', [ManutencaoController::class, 'create']);
@@ -93,6 +96,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manutencoes/edit/{id}', [ManutencaoController::class, 'edit']);
     Route::put('/manutencoes/update/{id}', [ManutencaoController::class, 'update']);
     Route::delete('/manutencoes/{id}', [ManutencaoController::class, 'destroy']);
+
 
     
 });
